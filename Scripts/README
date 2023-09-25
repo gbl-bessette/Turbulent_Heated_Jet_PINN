@@ -1,0 +1,39 @@
+# Procedure to run the code
+
+Example of command line:
+python3 path_to_PINN_DNS_main.py --method 'run' --algo 'temp_only' --alpha 0.9 --noise_level 0.0 --num_epoch 5 --b_size 10000 --zone_every 10000 --save_every 50000 --seed 42
+
+Specify simulation arguments:
+
+specify method: run or load_run
+# run: the simulation starts from scratch using the initialisation
+# load_run: a checkpoint is loaded and the simulation runs from the loaded model (useful when simulation is interrupted, or to continue simulation for a larger number of iterations)
+
+specify algorithm: temp_only, bc, bc_ic, progressive_spatial, progressive_spatial_temporal
+# temp_only: considering only temperature targets
+# bc: considering additional boundary conditions for every output variable
+# bc_ic: considering initial and boundary conditions for every output variable
+# progressive_spatial (experimental): solving progressively from domain boundaries to interior of domain: division of domain in 4 spatial zones
+# progressive_spatial_temporal (experimental): solving progressively from domain boundaries to interior of domain, 1 time-step at a time
+
+specify value of alpha: 0 < float < 1
+# a larger value of alpha gives more weight to the data loss, whereas a small value of alpha favors the residuals  
+
+specify noise level: float
+# add noise on the DNS target values
+# a noise level of 0 will not affect the target data values  
+                                                                                
+specify the number of epochs for the simulation
+                                                                                
+specify the mini-batch size      
+                                                                                
+specify the number of epochs after which the progressive algorithm will consider an additional zone (ignored for temp_only & bc)
+                                                                                
+specify the number of epochs after which the model will be saved
+# simulation model and results are saved under the Results folder in the parent directory Turbulent_Heated_Jet_Flow                                                                                                     
+# simulation results include relative and absolute errors during training, loss values during training, visualisation of scalar and vectorial fields on two different planes 'rz_plane: th' and 'rtheta-plane: z', for the first and last time steps, at the end of the simulation
+                                                                               
+specify the seed for stochatstic processes
+
+                                                                              
+
